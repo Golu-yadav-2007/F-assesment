@@ -1,0 +1,28 @@
+type Student = {
+    Id: int
+    Name: string
+    Marks: int
+}
+
+let students = [
+    { Id=1; Name="Rahul"; Marks=80 }
+    { Id=2; Name="Aman"; Marks=30 }
+]
+
+let names = students |> List.map (fun s -> s.Name)
+
+let passed = students |> List.filter (fun s -> s.Marks >= 40)
+
+let result marks =
+    match marks with
+    | m when m >= 40 -> "Pass"
+    | _ -> "Fail"
+
+printfn "Student Management System"
+
+students |> List.iter (fun s ->
+    printfn "%s - %d - %s" s.Name s.Marks (result s.Marks)
+)
+
+printfn "Student Names: %A" names
+printfn "Passed Students: %A" (passed |> List.map (fun s -> s.Name))
